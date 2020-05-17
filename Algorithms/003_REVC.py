@@ -22,7 +22,7 @@ def main():
     with open('datasets/rosalind_revc.txt') as input_data:
         dna=input_data.read().strip().split()
     
-#    dna='AAAACCCGGT'
+#   dna='AAAACCCGGT'
     rc=reverse_complement(dna)
     
     
