@@ -213,3 +213,23 @@ def consensus_sequence(array_cons):
         consensus_seq=consensus_seq+base_mapping(index)
             
     return consensus_seq
+
+def reverse_palindrome(dna):
+    if(dna==''.join(reverse_complement(dna))):
+        return 1
+    else:
+        return 0
+    
+def restriction_sites(dna):
+    len_dna=len(dna)
+    
+    site_list=[]
+    length_list=[]
+    
+    for j in range(4,13):
+        for i in range(len_dna-j+1):
+                if(reverse_palindrome(dna[i:i+j])==1):
+                    site_list.append(i+1)
+                    length_list.append(j)
+                    
+    return site_list, length_list
