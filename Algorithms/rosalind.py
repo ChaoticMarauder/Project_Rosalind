@@ -1,3 +1,4 @@
+#parsing a fasta file
 def parse_fasta(input_file):
     ID = None
     sequences = dict()
@@ -12,6 +13,7 @@ def parse_fasta(input_file):
             else:
                 sequences[ID] = sequences[ID] + line
                 
+    #returns a dictionary of sequence IDs as keys and sequences as values 
     return sequences
 
 def gc(dna):
@@ -128,3 +130,13 @@ def hamming_distance(s,t):
         return -1
         
     return count
+
+def dna_motif(dna, motif):
+    m_len=len(motif)
+    list_motifs=[]
+    for i in range(len(dna)-m_len):
+        if(dna[i:i+m_len]==motif):
+            list_motifs.append(i+1)
+            
+    return list_motifs
+
