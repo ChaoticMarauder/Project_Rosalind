@@ -20,8 +20,7 @@ def main():
     
 
     pairs=str(mortalfibonacciRabbits(n, m))
-#    
-#    
+   
     print(pairs)
     
     with open('solutions/rosalind_fibd.txt', 'w') as output_data:

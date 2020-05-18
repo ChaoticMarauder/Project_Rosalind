@@ -140,3 +140,22 @@ def dna_motif(dna, motif):
             
     return list_motifs
 
+def mortalfibonacciRabbits(n, m):
+    rabbits = [0, 1, 1]
+    for i in range(3, n + 1):
+        if(i <= m):
+            total = rabbits[i - 1] + rabbits[i - 2]
+        elif(i == m + 1):
+            total = rabbits[i - 1] + rabbits[i - 2] - 1
+        else:
+            total = rabbits[i - 1] + rabbits[i - 2] - rabbits[i - m - 1]
+        rabbits.append(total)
+    return (rabbits[n])
+
+def rabbit_pairs(n,k):
+    if(n==1):
+        return 1
+    if(n==2):
+        return 1
+    else:
+        return k*rabbit_pairs(n-2,k)+rabbit_pairs(n-1,k)
