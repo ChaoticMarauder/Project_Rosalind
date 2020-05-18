@@ -1,3 +1,5 @@
+import numpy as np
+
 #parsing a fasta file
 def parse_fasta(input_file):
     ID = None
@@ -159,3 +161,55 @@ def rabbit_pairs(n,k):
         return 1
     else:
         return k*rabbit_pairs(n-2,k)+rabbit_pairs(n-1,k)
+    
+    
+def consensus_profile(seq_list):
+    seq_length=len(seq_list[0])
+    consensus_array=np.zeros([4,seq_length])
+    
+    for i in range(len(seq_list)):
+        for j in range(seq_length):
+            if(seq_list[i][j]=='A'):
+                consensus_array[0][j]+=1
+            if(seq_list[i][j]=='C'):
+                consensus_array[1][j]+=1
+            if(seq_list[i][j]=='G'):
+                consensus_array[2][j]+=1
+            if(seq_list[i][j]=='T'):
+                consensus_array[3][j]+=1
+                
+    consensus_array=consensus_array.astype(int)
+                
+    dict_consensus={'A':consensus_array[0], 'C':consensus_array[1],
+                        'G':consensus_array[2], 'T':consensus_array[3] }
+        
+    return dict_consensus, consensus_array
+
+
+def base_mapping(n):
+    if(n==0):
+        base='A'
+    if(n==1):
+        base='C'
+    if(n==2):
+        base='G'
+    if(n==3):
+        base='T'
+        
+    return base
+    
+def consensus_sequence(array_cons):
+    
+    consensus_seq=""
+    
+    for i in range(np.size(array_cons,1)):
+        max_value=0
+        index=0
+        for j in range(np.size(array_cons,0)):
+            if(array_cons[j][i]>max_value):
+                max_value=array_cons[j][i]
+                index=j
+            
+        consensus_seq=consensus_seq+base_mapping(index)
+            
+    return consensus_seq
