@@ -94,18 +94,25 @@ def translate(rna):
        "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G",}
     protein=""
     l=len(rna)
+    start_codon=0
+    end_codon=1
     start=rna.find("AUG")
     if start!=-1:
+        start_codon=start
         while start+2<l:
             i=rna[start:start+3]
             if (i=="UAA" or i=="UAG" or i=="UGA"):
+                end_codon=start
                 break
             for j in dic:
                 if(j==i):
                     protein=protein+dic[i]
             start=start+3
-    return protein
-
+    
+    if(end_codon>1):
+        return protein, start_codon, end_codon
+    else:
+        return "",start_codon, end_codon
 
 def protein_weight(protein):
     dict_weights={'A':71.03711,'C':103.00919,'D':115.02694,'E':129.04259,

@@ -17,24 +17,34 @@ def translate(rna):
        "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G",}
     protein=""
     l=len(rna)
+    start_codon=0
+    end_codon=1
     start=rna.find("AUG")
     if start!=-1:
+        start_codon=start
         while start+2<l:
             i=rna[start:start+3]
             if (i=="UAA" or i=="UAG" or i=="UGA"):
+                end_codon=start
                 break
             for j in dic:
                 if(j==i):
                     protein=protein+dic[i]
             start=start+3
-    return protein
+    
+    if(end_codon>1):
+        return protein, start_codon, end_codon
+    else:
+        return "",start_codon, end_codon
 
 def main():
     with open('datasets/rosalind_prot.txt','r') as fh:
         t=fh.read().replace('\n','')
     
-    protein=translate(t)
+    protein, start, end=translate(t)
     print(protein)
+    print(start)
+    print(end)
     
     with open('solutions/rosalind_prot.txt', 'w') as output_data:
         output_data.write(protein)

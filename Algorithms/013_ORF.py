@@ -10,7 +10,6 @@ def last_stop_codon(rna):
         codon=rna[i:i+3]
         if(codon=="UAA" or codon=="UAG" or codon=="UGA"):
             last_stop=i+2
-            continue
             
     return last_stop
         
@@ -22,44 +21,39 @@ def orf_translate(dna):
     orf_list=[]
     
     last_stop_rna=[]
-    last_stop_rna.append(last_stop_codon(rna))
-    last_stop_rna.append(last_stop_codon(rna[1:]))
-    last_stop_rna.append(last_stop_codon(rna[2:]))
-    
     last_stop_reverse=[]
-    last_stop_reverse.append(last_stop_codon(reverse_rna))
-    last_stop_reverse.append(last_stop_codon(reverse_rna[1:]))
-    last_stop_reverse.append(last_stop_codon(reverse_rna[2:]))
+    
+    for i in range(3):
+        last_stop_rna.append(last_stop_codon(rna[i:]))
+        last_stop_reverse.append(last_stop_codon(reverse_rna[i:]))
+    
     
     first_strand=[]
     second_strand=[]
     
+    count1=0
+    count2=0
+    
     for i in range(3):
-        first_strand.append(rna[i:last_stop_rna[i]+i+1])
-        second_strand.append(reverse_rna[i:last_stop_reverse[i]+i+1])
+        first_strand.append(rna[i:last_stop_rna[i]+i])
+        second_strand.append(reverse_rna[i:last_stop_reverse[i]+i])
+        
     
-    print(first_strand)
-    print(second_strand)
-    
-    for j in range(3):
-        for k in range(0,len(first_strand[j]),3):
-    
-            seq1=translate(first_strand[j][k:len(first_strand[j])-3])
+    for i in range(3):
+        for j in range(len(first_strand[i])):
+            seq1, start, end = translate(first_strand[i][j:])
             if(len(seq1)!=0):
                 orf_list.append(seq1)
-                print(seq1)
-                print(j)
-                print(k)
-        
-        for k in range(0,len(second_strand[j]),3):    
-        
-            seq2=translate(second_strand[j][k:len(second_strand[j])-3])
+                count1+=1
+                
+        for j in range(len(second_strand[i])):
+            seq2, start, end = translate(second_strand[i][j:])
             if(len(seq2)!=0):
                 orf_list.append(seq2)
-            
-    
-    
-    
+                count2+=1
+        
+    print(count1)
+    print(count2)    
     possible_orfs = [] 
     
     for seq in orf_list: 
