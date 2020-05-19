@@ -358,7 +358,7 @@ def max_overlap_sequence(seq_list):
                     
     return [seq_list[max_index[0]]+seq_list[max_index[1]][max_overlap:]]+[seq_list[i] for i in range(length_list) if i not in max_index]
 
-def longest_super_sequence(seq_list):
+def shortest_super_sequence(seq_list):
     
     while(len(seq_list)>1):
         seq_list=max_overlap_sequence(seq_list)

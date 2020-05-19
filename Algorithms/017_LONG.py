@@ -23,7 +23,7 @@ def max_overlap_sequence(seq_list):
                     
     return [seq_list[max_index[0]]+seq_list[max_index[1]][max_overlap:]]+[seq_list[i] for i in range(length_list) if i not in max_index]
 
-def longest_super_sequence(seq_list):
+def shortest_super_sequence(seq_list):
     
     while(len(seq_list)>1):
         seq_list=max_overlap_sequence(seq_list)
@@ -39,9 +39,10 @@ def main():
     for key in seq_dict:
         seq_list.append(seq_dict[key])
         
-    final_sequence=longest_super_sequence(seq_list)
+    final_sequence=shortest_super_sequence(seq_list)
     
     print(final_sequence)
+    print(len(final_sequence))
     
     with open('solutions/rosalind_long.txt', 'w') as output_file:
         output_file.write(final_sequence)
