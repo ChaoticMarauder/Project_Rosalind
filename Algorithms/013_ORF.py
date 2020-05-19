@@ -31,29 +31,25 @@ def orf_translate(dna):
     first_strand=[]
     second_strand=[]
     
-    count1=0
-    count2=0
     
     for i in range(3):
-        first_strand.append(rna[i:last_stop_rna[i]+i])
-        second_strand.append(reverse_rna[i:last_stop_reverse[i]+i])
+        first_strand.append(rna[i:last_stop_rna[i]+i+1])
+        second_strand.append(reverse_rna[i:last_stop_reverse[i]+i+1])
         
+   
     
     for i in range(3):
         for j in range(len(first_strand[i])):
             seq1, start, end = translate(first_strand[i][j:])
             if(len(seq1)!=0):
                 orf_list.append(seq1)
-                count1+=1
+
                 
         for j in range(len(second_strand[i])):
             seq2, start, end = translate(second_strand[i][j:])
             if(len(seq2)!=0):
                 orf_list.append(seq2)
-                count2+=1
-        
-    print(count1)
-    print(count2)    
+            
     possible_orfs = [] 
     
     for seq in orf_list: 
