@@ -297,3 +297,13 @@ def orf_translate(dna):
             
             
     return possible_orfs
+
+
+def rna_splicing(dna, intron_list):
+    
+    for intron in intron_list:
+        dna=dna.replace(intron,'')
+    
+    spliced_rna = ''.join(transcribe(dna))
+    
+    return spliced_rna
