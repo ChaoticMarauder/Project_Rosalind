@@ -1,5 +1,6 @@
 import numpy as np
 from itertools import permutations
+from itertools import product
 
 #parsing a fasta file
 def parse_fasta(input_file):
@@ -382,3 +383,17 @@ def rearrangements(n):
 def k_mer_lexicographic(bases, k):
     k_mers = [''.join(item) for item in product(bases, repeat=k)]
     return k_mers
+
+def signed_permutations(n):
+    signed_ints_list=[]
+    
+    for i in range(1,n+1):
+        signed_ints_list.append([i,-1*i])
+    
+    product_list=map(list,list(product(*signed_ints_list)))
+    
+    signed_permutations_list=[]
+    for pro in product_list:
+        signed_permutations_list+=map(list,list(permutations(pro)))
+        
+    return signed_permutations_list
