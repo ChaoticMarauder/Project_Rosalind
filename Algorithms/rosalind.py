@@ -1,4 +1,5 @@
 import numpy as np
+from itertools import permutations
 
 #parsing a fasta file
 def parse_fasta(input_file):
@@ -366,4 +367,15 @@ def shortest_super_sequence(seq_list):
     return seq_list[0]
 #end of genome assembly
 
+def factorial(n):
+    if(n<=1):
+        return 1
+    else:
+        return n*factorial(n-1)
+    
+def rearrangements(n):
+    num_set=range(1,n+1)
+    permutation_list = list(permutations(num_set))
+    
+    return permutation_list
     
