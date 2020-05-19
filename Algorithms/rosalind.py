@@ -379,3 +379,6 @@ def rearrangements(n):
     
     return permutation_list
     
+def k_mer_lexicographic(bases, k):
+    k_mers = [''.join(item) for item in product(bases, repeat=k)]
+    return k_mers
