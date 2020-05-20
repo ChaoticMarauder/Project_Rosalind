@@ -444,3 +444,20 @@ def independent_alleles(k, N):
     
     prob_N=round(prob_N,4)
     return prob_N
+
+def lex_variable(list_letters, n):
+    final_list_letters=['$'] + list_letters
+    
+    kmer_list=list(product(final_list_letters, repeat=n))
+    kmer_lex_list=[]
+    for kmer in kmer_list:
+        
+        if('$' not in kmer):
+            kmer_lex_list.append(''.join(kmer))
+        
+        else:
+            for i in range(1,n):
+                if(''.join(kmer[i:n])=='$'*(n-i) and '$' not in kmer[:i]):
+                    kmer_lex_list.append(''.join(kmer).replace('$',''))
+    
+    return kmer_lex_list
