@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import permutations
 from itertools import product
+from scipy.special import comb
 
 #parsing a fasta file
 def parse_fasta(input_file):
@@ -408,3 +409,20 @@ def k_mer_sequence(dna):
     
     kmer_count=kmer_count.astype(int)
     return kmer_count
+
+def mendel_first_law(dominant, heterozygous, recessive):
+    num_offspring = comb(dominant+heterozygous+recessive, 2)
+    
+    num_recessive_offspring = (comb(recessive, 2) + 0.5*recessive*heterozygous
+                              + 0.25*comb(heterozygous, 2))
+    
+    num_dominant_offspring = (comb(dominant, 2) + 0.75*comb(heterozygous, 2) 
+                             + dominant*heterozygous + dominant*recessive 
+                             + 0.5*recessive*heterozygous)
+    
+    ratio_recessive = num_recessive_offspring/num_offspring
+    
+    ratio_dominant = 1-ratio_recessive
+    ratio_dominant = num_dominant_offspring/num_offspring
+    
+    return ratio_dominant
