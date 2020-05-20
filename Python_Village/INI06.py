@@ -23,7 +23,7 @@ def main():
         
     with open('solutions/rosalind_ini6.txt', 'w') as output_file:
         for key, value in dict_word.items():
-            output_file.write(str(key)+' '+str(value))
+            output_file.write(str(key)+' '+str(value)+'\n')
     
 if(__name__=='__main__'):
     main()
