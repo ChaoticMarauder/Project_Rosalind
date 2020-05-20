@@ -368,7 +368,7 @@ def shortest_super_sequence(seq_list):
     return seq_list[0]
 #end of genome assembly
 
-def factorial(n):
+def factorial(n): 
     if(n<=1):
         return 1
     else:
@@ -397,3 +397,14 @@ def signed_permutations(n):
         signed_permutations_list+=map(list,list(permutations(pro)))
         
     return signed_permutations_list
+
+def k_mer_sequence(dna):
+    kmer_list=k_mer_lexicographic('ACGT',4)
+    kmer_count=np.zeros(len(kmer_list))
+    
+    for i in range(len(dna)-3):
+        kmer=dna[i:i+4]
+        kmer_count[kmer_list.index(kmer)]+=1
+    
+    kmer_count=kmer_count.astype(int)
+    return kmer_count
