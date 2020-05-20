@@ -426,3 +426,10 @@ def mendel_first_law(dominant, heterozygous, recessive):
     ratio_dominant = num_dominant_offspring/num_offspring
     
     return ratio_dominant
+
+def expected_offspring(list_couples, num_offspring):
+    expected_dominant = (num_offspring*list_couples[0] + num_offspring*list_couples[1] 
+                         + num_offspring*list_couples[2] + 0.75*num_offspring*list_couples[3]
+                         + 0.5*num_offspring*list_couples[4])
+    
+    return expected_dominant
