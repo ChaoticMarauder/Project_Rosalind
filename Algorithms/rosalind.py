@@ -579,3 +579,9 @@ def partial_perm(n, k):
         num_perm = (num_perm*i)%1000000
         
     return num_perm
+
+def connected_tree(n, edge_list):
+    current_edges = len(edge_list)
+    edges_needed = (n-1) - current_edges
+    
+    return edges_needed
