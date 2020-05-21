@@ -603,3 +603,10 @@ def num_subsets(n):
         sset=(sset*2)%1000000
     
     return sset
+
+def alternate_splice(n,m):
+    alternate_splice_count=0
+    for k in range(m, n+1):
+        alternate_splice_count = (alternate_splice_count + comb(n, k, exact=True))%1000000
+        
+    return alternate_splice_count
