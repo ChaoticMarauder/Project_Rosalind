@@ -525,3 +525,25 @@ def matching_random_motif(N, gc_content, seq):
     prob_motif = 1-prob_not_motif
     
     return prob_motif
+
+def motif_prob(seq, gc_content):
+    GC_count=0
+    AT_count=0
+    
+    for i in range(len(seq)):
+        if(seq[i]=='G' or seq[i]=='C'):
+            GC_count+=1
+        else:
+            AT_count+=1
+            
+    prob_seq = (gc_content/2)**GC_count*((1-gc_content)/2)**AT_count
+    
+    return prob_seq
+    
+def expected_restriction_sites(N, seq, gc_content):
+    #seq is the restriction site sequence
+    n = N - len(seq) + 1
+    motif_probability = motif_prob(seq, gc_content)
+    expected_sites = n*motif_probability
+    
+    return expected_sites
