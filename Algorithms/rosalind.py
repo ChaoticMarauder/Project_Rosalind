@@ -508,3 +508,20 @@ def list_prob_gc_seq(seq, list_gc_content):
         list_log_prob.append(prob_gc_seq(seq,gc_content))
         
     return list_log_prob
+
+def matching_random_motif(N, gc_content, seq):
+    GC_count=0
+    AT_count=0
+    
+    for i in range(len(seq)):
+        if(seq[i]=='G' or seq[i]=='C'):
+            GC_count+=1
+        else:
+            AT_count+=1
+            
+    prob_seq = (gc_content/2)**GC_count*((1-gc_content)/2)**AT_count
+    prob_not_motif = (1-prob_seq)**N
+    
+    prob_motif = 1-prob_not_motif
+    
+    return prob_motif
