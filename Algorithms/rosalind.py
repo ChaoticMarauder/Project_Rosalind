@@ -585,3 +585,14 @@ def connected_tree(n, edge_list):
     edges_needed = (n-1) - current_edges
     
     return edges_needed
+
+def distance_matrix(seq_list):
+    num_seq=len(seq_list)
+    length_seq=len(seq_list[0])
+    distance_plot=np.zeros([num_seq, num_seq])
+    
+    for i in range(num_seq):
+        for j in range(num_seq):
+            distance_plot[i][j] = hamming_distance(seq_list[i], seq_list[j])/length_seq
+            
+    return distance_plot
