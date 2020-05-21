@@ -2,6 +2,7 @@ import numpy as np
 from itertools import permutations
 from itertools import product
 from scipy.special import comb
+import math
 
 #parsing a fasta file
 def parse_fasta(input_file):
@@ -484,3 +485,26 @@ def longest_shared_motif(seq_list):
                 longest_motif_length=j-i
     
     return longest_motif
+
+
+def prob_gc_seq(seq, gc_content):
+    prob=0.0
+    for i in range(len(seq)):
+        
+        if(seq[i]=='G' or seq[i]=='C'):
+            prob=prob+math.log10((gc_content/2))
+        
+        if(seq[i]=='A' or seq[i]=='T'):
+            prob=prob+math.log10((1-gc_content)/2)
+            
+    log_prob=round(prob,4)
+    
+    return log_prob
+
+def list_prob_gc_seq(seq, list_gc_content):
+    list_log_prob=[]
+    for i in range(len(list_gc_content)):
+        gc_content=list_gc_content[i]
+        list_log_prob.append(prob_gc_seq(seq,gc_content))
+        
+    return list_log_prob
