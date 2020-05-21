@@ -461,3 +461,26 @@ def lex_variable(list_letters, n):
                     kmer_lex_list.append(''.join(kmer).replace('$',''))
     
     return kmer_lex_list
+
+def check_motif(motif, seq_list):
+    for seq in seq_list:
+        if((motif not in seq) or (len(motif)>len(seq))):
+            return False
+    
+    return True
+        
+def longest_shared_motif(seq_list):
+    
+    longest_motif=''
+    length_first=len(seq_list[0])
+    longest_motif_length=0
+    
+    for i in range(length_first):
+        for j in range(length_first, i, -1):
+            if(j-i<longest_motif_length):
+                break
+            elif(check_motif(seq_list[0][i:j],seq_list)):
+                longest_motif=seq_list[0][i:j]
+                longest_motif_length=j-i
+    
+    return longest_motif
