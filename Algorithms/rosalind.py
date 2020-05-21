@@ -596,3 +596,10 @@ def distance_matrix(seq_list):
             distance_plot[i][j] = hamming_distance(seq_list[i], seq_list[j])/length_seq
             
     return distance_plot
+
+def num_subsets(n):
+    sset=1
+    for i in range(n):
+        sset=(sset*2)%1000000
+    
+    return sset
