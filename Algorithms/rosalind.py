@@ -572,3 +572,10 @@ def mrna_to_protein(protein):
         mrna_possibilities = (mrna_possibilities*list(codon_dict.values()).count(aa))% 1000000
 
     return mrna_possibilities
+
+def partial_perm(n, k):
+    num_perm=1
+    for i in range(n, n-k, -1):
+        num_perm = (num_perm*i)%1000000
+        
+    return num_perm
