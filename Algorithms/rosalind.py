@@ -610,3 +610,15 @@ def alternate_splice(n,m):
         alternate_splice_count = (alternate_splice_count + comb(n, k, exact=True))%1000000
         
     return alternate_splice_count
+
+def independent_segregation(n):
+    
+    probability = 2**(2*n)
+    
+    log_prob_array = [-2*n*math.log10(2)]*2*n
+    
+    for k in range(2*n):
+        probability = probability - comb(2*n, k, exact=True)
+        log_prob_array[k]=log_prob_array[k] + math.log10(probability)
+        
+    return log_prob_array
