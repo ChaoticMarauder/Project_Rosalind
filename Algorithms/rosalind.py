@@ -665,3 +665,35 @@ def sex_linked_inheritance(allele_frequency_list):
         carrier_list.append(carrier)
     
     return carrier_list
+
+def de_bruijn_graph(seq_list):
+    
+    final_seq_list=[]
+    
+    for seq in seq_list:
+        if seq not in final_seq_list:
+            final_seq_list.append(seq)
+    
+    reverse_complement_seq_list=[]
+    
+    for seq in final_seq_list:
+        reverse_complement_seq_list.append(''.join(reverse_complement(seq)))
+        
+    adjacency_list=[]
+    k=len(final_seq_list[0])
+    
+    for seq in final_seq_list:
+        edge=['','']
+        edge[0]=seq[0:k-1]
+        edge[1]=seq[1:k]
+        if edge not in adjacency_list:
+            adjacency_list.append(edge)
+    
+    for seq in reverse_complement_seq_list:
+        edge=['','']
+        edge[0]=seq[0:k-1]
+        edge[1]=seq[1:k]
+        if edge not in adjacency_list:
+            adjacency_list.append(edge)
+            
+    return adjacency_list
