@@ -634,3 +634,26 @@ def hardy_weinberg(p_list):
         recessive_list.append(recessive_allele_probability)
         
     return recessive_list
+
+def set_operations(U, A, B):
+    list_of_operations=[]
+    
+    union = list(A|B)
+    list_of_operations.append(union)
+    
+    intersection = list(A&B)
+    list_of_operations.append(intersection)
+    
+    difference_1 = list(A-B)
+    list_of_operations.append(difference_1)
+    
+    difference_2 = list(B-A)
+    list_of_operations.append(difference_2)
+    
+    A_complement = list(U-A)
+    list_of_operations.append(A_complement)
+    
+    B_complement = list(U-B)
+    list_of_operations.append(B_complement)
+    
+    return list_of_operations
