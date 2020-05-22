@@ -622,3 +622,15 @@ def independent_segregation(n):
         log_prob_array[k]=log_prob_array[k] + math.log10(probability)
         
     return log_prob_array
+
+def hardy_weinberg(p_list):
+    recessive_list=[]
+    
+    for idx in range(len(p_list)):
+        r = math.sqrt(p_list[idx])
+        h = 2-r
+        
+        recessive_allele_probability = r*h
+        recessive_list.append(recessive_allele_probability)
+        
+    return recessive_list
