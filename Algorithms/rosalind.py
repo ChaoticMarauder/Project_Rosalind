@@ -727,3 +727,11 @@ def cyclic_assembly(seq_list):
 def internal_nodes(n):
     # n is the number of leaves on the unrooted binary tree
     return n-2
+
+def perfect_matching(rna):
+    a = rna.count('A')
+    g = rna.count('G')
+    
+    num_perfect_matching = factorial(a)*factorial(g)
+    
+    return num_perfect_matching
