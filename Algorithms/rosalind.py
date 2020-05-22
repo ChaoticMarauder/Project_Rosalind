@@ -657,3 +657,11 @@ def set_operations(U, A, B):
     list_of_operations.append(B_complement)
     
     return list_of_operations
+
+def sex_linked_inheritance(allele_frequency_list):
+    carrier_list=[]
+    for idx in range(len(allele_frequency_list)):
+        carrier = round(2*allele_frequency_list[idx]*(1-allele_frequency_list[idx]),3)
+        carrier_list.append(carrier)
+    
+    return carrier_list
