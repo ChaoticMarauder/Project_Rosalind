@@ -723,3 +723,7 @@ def cyclic_assembly(seq_list):
         temp_kmer = adjacency_list.pop(idx)
         
     return cyclic_seq
+
+def internal_nodes(n):
+    # n is the number of leaves on the unrooted binary tree
+    return n-2
