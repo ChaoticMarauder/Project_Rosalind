@@ -27,3 +27,19 @@ def frequent_words(dna, k):
             list_frequent_kmers.append(key)
             
     return list_frequent_kmers
+
+def reverse_complement(dna):
+    rc=[]
+    for base in dna:
+        if(base=='T'):
+            rc.append('A')
+        if(base=='A'):
+            rc.append('T')
+        if(base=='G'):
+            rc.append('C')
+        if(base=='C'):
+            rc.append('G')    
+    
+    
+    rc.reverse()
+    return ''.join(rc)
