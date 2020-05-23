@@ -52,3 +52,22 @@ def pattern_occurence(pattern, dna):
             list_occurences.append(i)
             
     return list_occurences
+
+def SymbolToNumber(base):
+    if(base=='A'):
+        return 0
+    if(base=='C'):
+        return 1
+    if(base=='G'):
+        return 2
+    if(base=='T'):
+        return 3
+    
+def PatternToNumber(pattern):
+    if(len(pattern)==0):
+        return 0
+    
+    last_symbol = pattern[-1]
+    prefix = pattern[0:len(pattern)-1]
+    
+    return 4*PatternToNumber(prefix)+SymbolToNumber(last_symbol)
