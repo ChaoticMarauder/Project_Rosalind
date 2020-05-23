@@ -1,4 +1,3 @@
-
 def PatternCount(dna, pattern):
     count = 0
     len_pattern = len(pattern) 
@@ -232,3 +231,31 @@ def neighbours(pattern, d):
             neighbourhood.append(pattern_new)
             
     return neighbourhood
+
+def frequent_words_with_mismatches(dna, k, d):
+    frequent_patterns=[]
+    close_array=[]
+    frequency_array=[]
+    
+    for i in range(4**k):
+        close_array.append(0)
+        frequency_array.append(0)
+        
+    for i in range(len(dna)-k+1):
+        neighbourhood = neighbours(dna[i:i+k], d)
+        for pattern in neighbourhood:
+            idx = PatternToNumber(pattern)
+            close_array[idx] = 1
+    
+    for i in range(4**k):
+        if close_array[i]==1:
+            pattern = NumberToPattern(i,k)
+            frequency_array[i] = len(approximate_pattern_matching(pattern, dna, d))
+
+    max_value = max(frequency_array)
+    for i in range(4**k):
+        if frequency_array[i]==max_value:
+            pattern = NumberToPattern(i,k)
+            frequent_patterns.append(pattern)
+            
+    return frequent_patterns
