@@ -28,6 +28,33 @@ def frequent_words(dna, k):
             
     return list_frequent_kmers
 
+#faster and more efficient version of the frequent words function
+def finding_frequent_patterns_sorting(dna, k):
+    frequent_patterns=[]
+    index=[]
+    count=[]
+    
+    for i in range(len(dna)-k):
+        pattern = dna[i:i+k]
+        idx = PatternToNumber(pattern)
+        cnt = 1
+        index.append(idx)
+        count.append(cnt)
+        
+    index.sort()
+    
+    for i in range(1,len(dna)-k):
+        if(index[i]==index[i-1]):
+            count[i]=count[i-1]+1
+            
+    max_count=max(count)
+    for i in range(0,len(dna)-k):
+        if(count[i]==max_count):
+            pattern=NumberToPattern(index[i], k)
+            frequent_patterns.append(pattern)
+            
+    return frequent_patterns
+
 def reverse_complement(dna):
     rc=[]
     for base in dna:
