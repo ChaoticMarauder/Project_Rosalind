@@ -126,10 +126,10 @@ def NumberToPattern(index, k):
 
 def computing_frequencies(dna, k):
     frequency_array=[]
-    for i in range(4**k-1):
+    for i in range(4**k):
         frequency_array.append(0)
         
-    for i in range(len(dna)-k):
+    for i in range(len(dna)-k+1):
         pattern=dna[i:i+k]
         index = PatternToNumber(pattern)
         frequency_array[index] = frequency_array[index]+1
