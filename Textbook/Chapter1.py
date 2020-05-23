@@ -43,3 +43,12 @@ def reverse_complement(dna):
     
     rc.reverse()
     return ''.join(rc)
+
+def pattern_occurence(pattern, dna):
+    list_occurences=[]
+    k = len(pattern)
+    for i in range(len(dna)-k):
+        if(dna[i:i+k]==pattern):
+            list_occurences.append(i)
+            
+    return list_occurences
