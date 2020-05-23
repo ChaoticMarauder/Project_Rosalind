@@ -168,3 +168,23 @@ def clump_finding(dna, k, L, t):
             clump_frequent_pattern_list.append(pattern)
             
     return clump_frequent_pattern_list
+
+def gc_genome_skew(dna):
+    gc_skew=[]
+    gc_diff=0
+    
+    for i in range(len(dna)):
+        gc_skew.append(gc_diff)
+        if dna[i]=='C':
+            gc_diff-=1
+        if dna[i]=='G':
+            gc_diff+=1
+    
+    oric_list=[]
+    min_value = min(gc_skew)
+    
+    for i in range(len(gc_skew)):
+        if(gc_skew[i]==min_value):
+            oric_list.append(i)
+    
+    return oric_list
