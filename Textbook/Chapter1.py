@@ -200,3 +200,14 @@ def hamming_distance(s,t):
         return -1
         
     return count
+
+def approximate_pattern_matching(pattern, dna, d):
+    start_positions=[]
+    
+    p_len=len(pattern)
+    for i in range(len(dna)-p_len+1):
+        pattern_dna = dna[i:i+p_len]
+        if(hamming_distance(pattern, pattern_dna)<=d):
+            start_positions.append(i)
+            
+    return start_positions
