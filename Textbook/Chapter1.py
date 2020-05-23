@@ -188,3 +188,14 @@ def gc_genome_skew(dna):
             oric_list.append(i)
     
     return oric_list
+
+def hamming_distance(s,t):
+    count=0
+    if(len(s)==len(t)):
+        for i in range(len(s)):
+            if(s[i]!=t[i]):
+                count+=1
+    else:
+        return -1
+        
+    return count
