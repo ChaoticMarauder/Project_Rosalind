@@ -71,3 +71,26 @@ def PatternToNumber(pattern):
     prefix = pattern[0:len(pattern)-1]
     
     return 4*PatternToNumber(prefix)+SymbolToNumber(last_symbol)
+
+def NumberToSymbol(index):
+    base=''
+    if(index==0):
+        base = 'A'
+    if(index==1):
+        base = 'C'
+    if(index==2):
+        base = 'G'
+    if(index==3):
+        base = 'T'
+        
+    return base
+
+def NumberToPattern(index, k):
+       
+    if(k==1):
+        return NumberToSymbol(index)
+    
+    r=index % 4
+    prefix_index=int(index / 4)
+    
+    return NumberToPattern(prefix_index, k-1) + NumberToSymbol(r) 
