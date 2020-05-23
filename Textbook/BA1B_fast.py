@@ -6,7 +6,7 @@ def finding_frequent_patterns_sorting(dna, k):
     index=[]
     count=[]
     
-    for i in range(len(dna)-k):
+    for i in range(len(dna)-k+1):
         pattern = dna[i:i+k]
         idx = PatternToNumber(pattern)
         cnt = 1
@@ -15,12 +15,12 @@ def finding_frequent_patterns_sorting(dna, k):
         
     index.sort()
     
-    for i in range(1,len(dna)-k):
+    for i in range(1,len(dna)-k+1):
         if(index[i]==index[i-1]):
             count[i]=count[i-1]+1
             
     max_count=max(count)
-    for i in range(0,len(dna)-k):
+    for i in range(0,len(dna)-k+1):
         if(count[i]==max_count):
             pattern=NumberToPattern(index[i], k)
             frequent_patterns.append(pattern)

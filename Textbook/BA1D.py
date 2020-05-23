@@ -1,7 +1,7 @@
 def pattern_occurence(pattern, dna):
     list_occurences=[]
     k = len(pattern)
-    for i in range(len(dna)-k):
+    for i in range(len(dna)-k+1):
         if(dna[i:i+k]==pattern):
             list_occurences.append(i)
             

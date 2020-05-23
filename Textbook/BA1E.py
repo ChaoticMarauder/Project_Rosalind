@@ -27,7 +27,7 @@ def clump_finding(dna, k, L, t):
             pattern = NumberToPattern(i, k)
             clump_frequent_pattern_list.append(pattern)
     
-    for i in range(1, len(dna)-L):
+    for i in range(1, len(dna)-L+1):
         first_pattern = dna[i-1:i-1+k]
         index = PatternToNumber(first_pattern)
         frequency_array[index] = frequency_array[index] - 1
