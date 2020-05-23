@@ -211,3 +211,24 @@ def approximate_pattern_matching(pattern, dna, d):
             start_positions.append(i)
             
     return start_positions
+
+def neighbours(pattern, d):
+    if d==0:
+        return [pattern]
+    if len(pattern)==1:
+        return ['A','C','G','T']
+    
+    neighbourhood=[]
+    
+    suffix_neighbours = neighbours(pattern[1:len(pattern)], d)
+    
+    for pattern_suffix in suffix_neighbours:
+        if hamming_distance(pattern[1:len(pattern)],pattern_suffix) < d:
+            for nucleotide in ['A','C','G','T']:
+                pattern_new = nucleotide + pattern_suffix
+                neighbourhood.append(pattern_new)
+        else:
+            pattern_new = pattern[0] + pattern_suffix
+            neighbourhood.append(pattern_new)
+            
+    return neighbourhood
