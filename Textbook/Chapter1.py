@@ -1,3 +1,4 @@
+
 def PatternCount(dna, pattern):
     count = 0
     len_pattern = len(pattern) 
@@ -121,3 +122,49 @@ def NumberToPattern(index, k):
     prefix_index=int(index / 4)
     
     return NumberToPattern(prefix_index, k-1) + NumberToSymbol(r) 
+
+
+def computing_frequencies(dna, k):
+    frequency_array=[]
+    for i in range(4**k-1):
+        frequency_array.append(0)
+        
+    for i in range(len(dna)-k):
+        pattern=dna[i:i+k]
+        index = PatternToNumber(pattern)
+        frequency_array[index] = frequency_array[index]+1
+        
+    return frequency_array
+
+def clump_finding(dna, k, L, t):
+    clump_frequent_pattern_list=[]
+    clump_array=[]
+    
+    for i in range(4**k-1):
+        clump_array.append(0)
+        
+    frequency_array = computing_frequencies(dna[0:L], k)
+    
+    for i in range(4**k-1):
+        if(frequency_array[i]>=t):
+            pattern = NumberToPattern(i, k)
+            clump_frequent_pattern_list.append(pattern)
+    
+    for i in range(1, len(dna)-L):
+        first_pattern = dna[i-1:i-1+k]
+        index = PatternToNumber(first_pattern)
+        frequency_array[index] = frequency_array[index] - 1
+        
+        second_pattern = dna[i+L-k:i+L]
+        index = PatternToNumber(second_pattern)
+        frequency_array[index] = frequency_array[index] + 1
+        
+        if(frequency_array[index]>=t):
+            clump_array[index]=1
+            
+    for i in range(4**k-1):
+        if(clump_array[i]==1):
+            pattern = NumberToPattern(i, k)
+            clump_frequent_pattern_list.append(pattern)
+            
+    return clump_frequent_pattern_list
