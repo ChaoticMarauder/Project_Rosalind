@@ -1,4 +1,3 @@
-import random
 from Chapter1 import NumberToPattern
 
 def pattern_probability(pattern, profile):
