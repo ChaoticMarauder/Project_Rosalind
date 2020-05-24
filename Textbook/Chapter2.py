@@ -1,4 +1,6 @@
+import math
 from Chapter1 import hamming_distance
+from Chapter1 import NumberToPattern
 from Chapter1 import neighbours
 
 def motif_enumeration(dna, k, d):
@@ -29,3 +31,35 @@ def motif_enumeration(dna, k, d):
             final_patterns.append(pattern)
             
     return final_patterns
+
+def min_hamming_distance(pattern, dna):
+    k = len(pattern)
+    min_dist = len(dna)
+    
+    for i in range(len(dna)-k+1):
+        if(hamming_distance(pattern, dna[i:i+k]) < min_dist):
+            min_dist = hamming_distance(pattern, dna[i:i+k])
+            
+    return min_dist
+        
+
+
+def median_string(dna_list, k):
+    distance = math.inf
+    median = ''
+    
+    pattern_list = []
+    for i in range(4**k):
+        kmer = NumberToPattern(i,k)
+        pattern_list.append(kmer)
+        
+    for pattern in pattern_list:
+        score=0
+        for seq in dna_list:
+            score = score + min_hamming_distance(pattern, seq)
+        
+        if score < distance:
+            distance = score
+            median = pattern
+            
+    return median
