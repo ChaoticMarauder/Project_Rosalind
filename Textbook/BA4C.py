@@ -25,8 +25,6 @@ def cyclic_spectrum(peptide):
                   'I':113,'K':128,'L':113,'M':131,'N':114,'P':97,'Q':128,
                   'R':156,'S':87,'T':101,'V':99,'W':186,'Y':163}
     
-    
-    
     prefix_mass = [0]
     
     for i in range(1,len(peptide)+1):
