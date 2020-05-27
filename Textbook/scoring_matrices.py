@@ -22,7 +22,7 @@ class PAM250(object):
         import os
         import pandas as pd
         # Convert the scoring matrix text file to a data frame
-        self.scoring_matrix = pd.read_table(os.path.join(os.path.dirname(__file__), 'data/PAM250.txt'), sep='  ')
+        self.scoring_matrix = pd.read_table(os.path.join(os.path.dirname(__file__), 'data/PAM250.txt'), sep='  ', engine = 'python')
 
     def __getitem__(self, pair):
         #Returns the score of the given pair of protein
