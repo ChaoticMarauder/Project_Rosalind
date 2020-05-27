@@ -735,3 +735,17 @@ def perfect_matching(rna):
     num_perfect_matching = factorial(a)*factorial(g)
     
     return num_perfect_matching
+
+def spliced_motif(dna, motif):
+    splice_pos=[]
+    i = 0
+    
+    for base in motif:
+        
+        while(base!=dna[i]):
+            i = i+1
+            
+        i = i+1
+        splice_pos.append(i)
+        
+    return splice_pos
