@@ -853,3 +853,27 @@ def edit_distance_alignment(seq1, seq2):
         aligned_seq2 = indel_inserted(aligned_seq2, indel)
         
     return min_score, aligned_seq1, aligned_seq2
+
+def global_alignment_score(seq1, seq2, scoring_matrix, indel_penalty):
+
+    m = len(seq1)
+    n = len(seq2)
+    
+    s = [[0 for i in range(n+1)] for j in range(m+1)]
+    
+    for i in range(1, m+1):
+        s[i][0] = -i*indel_penalty
+    for j in range(1, n+1):
+        s[0][j] = -j*indel_penalty
+
+    
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            score = [s[i-1][j] - indel_penalty, s[i][j-1] - indel_penalty, s[i-1][j-1] + scoring_matrix[seq1[i-1], seq2[j-1]]]
+            s[i][j] = max(score)
+
+    
+    max_score = s[m][n]
+        
+
+    return max_score
